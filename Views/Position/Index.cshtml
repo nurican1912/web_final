@@ -1,0 +1,41 @@
+@model IEnumerable<Position>
+
+@{
+    ViewData["Title"] = "Positions";
+}
+
+<h2>Positions</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<p>
+    <a class="btn btn-primary" asp-action="Create"><i class="bi bi-plus-circle"></i> Add New Position</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Position Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PositionId" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
+                <a asp-action="Details" asp-route-id="@item.PositionId" class="btn btn-info btn-sm"><i class="bi bi-info-circle"></i> Details</a>
+                <a asp-action="Delete" asp-route-id="@item.PositionId" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table> 

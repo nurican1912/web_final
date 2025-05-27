@@ -1,0 +1,55 @@
+@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Employees";
+}
+<h2>Employees</h2>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info">@TempData["InfoMessage"]</div>
+}
+<p>
+    <a class="btn btn-primary" asp-action="Create"><i class="bi bi-plus-circle"></i> Add New Employee</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Birth Date</th>
+            <th>Salary</th>
+            <th>Department</th>
+            <th>Position</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@item.Email</td>
+            <td>@item.Phone</td>
+            <td>@item.BirthDate.ToShortDateString()</td>
+            <td>@item.Salary.ToString("C")</td>
+            <td>@item.Department?.Name</td>
+            <td>@item.Position?.Name</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmployeeId" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
+                <a asp-action="Details" asp-route-id="@item.EmployeeId" class="btn btn-info btn-sm"><i class="bi bi-info-circle"></i> Details</a>
+                <a asp-action="Delete" asp-route-id="@item.EmployeeId" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table> 

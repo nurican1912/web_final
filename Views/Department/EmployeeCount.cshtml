@@ -1,0 +1,13 @@
+@model Department
+@{
+    ViewData["Title"] = "Employee Count for Department";
+}
+<h2>@ViewBag.Department?.Name - Employee Count</h2>
+
+<div>
+    Total employees: <b>@ViewBag.Count</b>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div> 

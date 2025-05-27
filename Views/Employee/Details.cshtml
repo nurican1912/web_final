@@ -1,0 +1,18 @@
+@model Employee
+@{
+    ViewData["Title"] = "Employee Details";
+}
+<h2>Employee Details</h2>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">@Model.FirstName @Model.LastName</h5>
+        <p><b>Email:</b> @Model.Email</p>
+        <p><b>Phone:</b> @Model.Phone</p>
+        <p><b>Birth Date:</b> @Model.BirthDate.ToShortDateString()</p>
+        <p><b>Salary:</b> @Model.Salary.ToString("C")</p>
+        <p><b>Department:</b> @Model.Department?.Name</p>
+        <p><b>Position:</b> @Model.Position?.Name</p>
+        <a asp-action="Edit" asp-route-id="@Model.EmployeeId" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
+        <a asp-action="Index" class="btn btn-secondary btn-sm">Back to List</a>
+    </div>
+</div> 
